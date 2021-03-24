@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Bank.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,20 @@ namespace Bank
         public MainWindow()
         {
             InitializeComponent();
+            BackgroundWorker backgroundWorker = ((BackgroundWorker)this.FindResource("backgroundWorker"));
+            Experiment experiment = new Experiment(backgroundWorker);
+            experiment.Start();
         }
+
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            if (settingsWindow.ShowDialog() == true)
+            {
+                System.Console.WriteLine("Another OK");
+            }
+        }
+
+        
     }
 }

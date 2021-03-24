@@ -1,0 +1,101 @@
+<Window x:Class="Bank.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Bank"
+        xmlns:commands="clr-namespace:Bank.Commands"
+        mc:Ignorable="d"
+        Title="Параметры" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static commands:BankCommands.SettingsDialogOkClick}" x:Name="OkButtonCommand" Executed="OkClick" CanExecute="CanExecute"></CommandBinding>
+    </Window.CommandBindings>
+    <Grid Margin="10">
+        <Grid.Resources>
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Margin" Value="0,0,1,0" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" MinWidth="25"/>
+            <ColumnDefinition Width="auto" MinWidth="25"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock>Количество клерков:</TextBlock>
+        <TextBox Name="WorkersBox" Grid.Column="1" MinWidth="25">
+            <Binding Path="WorkersNum">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <TextBlock Grid.Row="1">Зарплата клерков:</TextBlock>
+        <TextBox Grid.Row="1" Name="WorkersSalaryBox" Grid.Column="1" MinWidth="25">
+            <Binding Path="WorkersSalary">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <TextBlock Grid.Row="2">Время обслуживания клиента (от и до)</TextBlock>
+        <TextBox x:Name="TimeToProcessBeginBox" Grid.Row="2" Grid.Column="1"  MinWidth="20">
+            <Binding Path="TimeToProcessBegin">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBox x:Name="TimeToProcessEndBox" Grid.Row="2" Grid.Column="2"  MinWidth="20">
+            <Binding Path="TimeToProcessEnd">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <TextBlock Grid.Row="3" MinWidth="250">Прибыль с клиента (от и до)</TextBlock>
+        <TextBox x:Name="ProfitStartBox" Grid.Row="3" Grid.Column="1"  MinWidth="20">
+            <Binding Path="ProfitStart">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <TextBox x:Name="ProfitEndBox" Grid.Row="3" Grid.Column="2" MinWidth="20">
+            <Binding Path="ProfitEnd">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <TextBlock Grid.Row="4">Шаг моделирования (в минутах)</TextBlock>
+        <TextBox Grid.Row="4" Name="StepMinutesBox" Grid.Column="1" MinWidth="25">
+            <Binding Path="StepMinutes">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <WrapPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Command="{x:Static commands:BankCommands.SettingsDialogOkClick}" MinWidth="60" Margin="0,0,10,0" Name="OkButton" Content="ОК">
+            </Button>
+            <Button IsCancel="True" MinWidth="60">Отмена</Button>
+        </WrapPanel>
+
+    </Grid>
+</Window>

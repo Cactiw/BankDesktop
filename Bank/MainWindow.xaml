@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:Bank"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="328" Margin="41,55,0,0" VerticalAlignment="Top" Width="207"/>
-    </Grid>
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Настройки" Click="SettingsClick"/>
+                <Separator />
+                <MenuItem Header="_Exit" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <TextBlock>Привет</TextBlock>
+        </Grid>
+    </DockPanel>
 </Window>

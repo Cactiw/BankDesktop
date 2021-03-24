@@ -17,9 +17,8 @@ public class Department
 		ClientQueue = new List<Client>();
 	}
 
-	public Client SpawnClient()
+	public void NewClient(Client client)
     {
-		var client = new Client();
 		Worker freeWorker = null;
 		for (int i = 0; i <= NumWorkers; ++i)
         {
@@ -36,12 +35,34 @@ public class Department
 			this.ClientQueue.Add(client);
         } else
         {
-			freeWorker.Status = Worker.Statuses.BUSY;
-			freeWorker.CurrentClient = client;
-			client.Worker = freeWorker;
-			client.Status = Client.Statuses.PROCESSING;
+			freeWorker.StartWorkWithClient(client);
         }
-		return client;
+		return;
 
+    }
+
+	public void TryMoveQueue(Worker worker)
+    {
+		if (worker.Status != Worker.Statuses.READY)
+        {
+			return;
+        }
+		if (this.ClientQueue.Count == 0)
+        {
+			return;
+        }
+		Client client = ClientQueue[0];
+		ClientQueue.RemoveAt(0);
+		worker.StartWorkWithClient(client);
+
+    }
+
+	public void Tick(int TickRate)
+    {
+		Workers.ForEach(worker =>
+		{
+			worker.ProceedWork(TickRate);
+			TryMoveQueue(worker);
+		});
     }
 }
