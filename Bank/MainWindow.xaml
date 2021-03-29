@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bank"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Bank" Height="600" Width="1300">
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
