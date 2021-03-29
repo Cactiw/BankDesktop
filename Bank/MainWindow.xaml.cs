@@ -124,7 +124,7 @@ namespace Bank
 
         private void UpdateStatistics()
         {
-            String text = "Статистика\n";
+            String text = "";
             if (Experiment.Started)
             {
                 text += "Всего клиентов: " + Experiment.Department.ClientsTotal;
