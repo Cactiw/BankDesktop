@@ -47,6 +47,26 @@ namespace Bank.Models
                 Department.Tick(1);
                 CurrentTime = CurrentTime.Add(new TimeSpan(0, 1, 0));
                 Trace.WriteLine("Minute passed, CurrentTime = " + CurrentTime.ToString());
+
+                if (CurrentTime.CompareTo(Settings.GetDayEndTime(Day)) >= 0)
+                {
+                    NextDay();
+                    break;
+                }
+            }
+        }
+
+        private void NextDay()
+        {
+            Day += 1;
+            if (Day >= Settings.DayNames.Count)
+            {
+                Trace.WriteLine("End of expiriment!");
+            }
+            else
+            {
+                CurrentTime = Settings.GetDayStartTime(Day);
+                Department.ClearState();
             }
         }
 

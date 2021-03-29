@@ -24,6 +24,13 @@ public class Worker
 		client.Status = Client.Statuses.PROCESSING;
 	}
 
+	public void ResetWorker()
+    {
+		this.Progress = 0;
+		this.Status = Worker.Statuses.READY;
+		this.CurrentClient = null;
+	}
+
 	public void ProceedWork(int TickRate)
     {
 		if (this.Status == Worker.Statuses.READY)

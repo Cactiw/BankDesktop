@@ -60,6 +60,14 @@ public class Department
 
     }
 
+	public void ClearState()
+    {
+		foreach (Worker worker in Workers)
+        {
+			worker.ResetWorker();
+        }
+		ClientQueue.Clear();
+    }
 	public void Tick(int TickRate)
     {
 		Workers.ForEach(worker =>
