@@ -48,6 +48,7 @@ namespace Bank
             Experiment = new Experiment(backgroundWorker);
             Experiment.Start();
             WorkerList.ItemsSource = WorkerCells;
+            ExitMenuButton.Click += (s, e) => { Application.Current.Shutdown(); };
 
             UpdateUI();
         }

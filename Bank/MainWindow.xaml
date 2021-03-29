@@ -12,7 +12,7 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Настройки" Click="SettingsClick"/>
                 <Separator />
-                <MenuItem Header="Выход" />
+                <MenuItem Name="ExitMenuButton" Header="Выход" />
             </MenuItem>
         </Menu>
         <Grid>
