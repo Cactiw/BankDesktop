@@ -6,8 +6,10 @@ public class Worker
 	public Statuses Status { get; set; }
 	public Client CurrentClient { get; set; }
 	public int Progress { get; set; }
-	public Worker()
+	public int Number { get; }
+	public Worker(int number)
 	{
+		Number = number;
 		Status = Statuses.READY;
 		Progress = 0;
 	}
@@ -34,4 +36,8 @@ public class Worker
 			this.Status = Worker.Statuses.READY;
 		}
 	}
+	public bool IsBusy()
+    {
+		return Status == Statuses.BUSY;
+    }
 }

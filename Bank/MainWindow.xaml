@@ -12,11 +12,46 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Настройки" Click="SettingsClick"/>
                 <Separator />
-                <MenuItem Header="_Exit" />
+                <MenuItem Header="Выход" />
             </MenuItem>
         </Menu>
         <Grid>
-            <TextBlock>Привет</TextBlock>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="WorkerList" Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate DataType="local::WorkerCell">
+                        <StackPanel Orientation="Vertical" Background="{Binding BackgroundColor}">
+                            <TextBlock Text="{Binding NumberString}" Padding="10" TextAlignment="Center" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="2">
+                <TextBlock x:Name="QueueBlock" Text="Очередь пуста" TextAlignment="Center" VerticalAlignment="Center" FontSize="16">
+                </TextBlock>
+            </Border>
+            <Button Content="Шаг" Grid.Row="5" Grid.Column="5" Width="150" Height="50" Click="StepClick"></Button>
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="3" Width="100" Height="30">
+                <TextBlock Name="TimeTextBlock" Text="Пн 10:00" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+            </Border>
         </Grid>
     </DockPanel>
 </Window>

@@ -4,15 +4,15 @@ using System.Collections.Generic;
 public class Department
 {
 	private int NumWorkers;
-	private List<Worker> Workers { get; set; }
-	private List<Client> ClientQueue { get; set; }
+	public List<Worker> Workers { get; }
+	public List<Client> ClientQueue { get; }
 	public Department(in int NumWorkers)
 	{
 		this.NumWorkers = NumWorkers;
 		Workers = new List<Worker>();
-		for (int i = 0; i <= NumWorkers; ++i)
+		for (int i = 0; i < NumWorkers; ++i)
         {
-			Workers.Add(new Worker());
+			Workers.Add(new Worker(i + 1));
         }
 		ClientQueue = new List<Client>();
 	}

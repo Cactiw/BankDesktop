@@ -17,10 +17,11 @@ namespace Bank
         //private TextBox ProfitStartBox { get; set; }
         //private TextBox ProfitEndBox { get; set; }
         //private TextBox StepMinutesBox { get; set; }
+        private Settings SettingsInstance { get; }
         public SettingsWindow()
         {
             InitializeComponent();
-            Settings SettingsInstance = Settings.Instance;
+            SettingsInstance = Settings.Instance;
             this.DataContext = SettingsInstance;
         }
 
