@@ -132,7 +132,7 @@ namespace Bank
                 text += "\nКлиентов ушло: " + Experiment.Department.ClientsLeft;
                 text += "\nПолучено денег: " + Experiment.Department.EarnedMoney;
                 text += "\nВыплачено зарплат: " + (int)Experiment.Department.SalaryPaid;
-                text += "\nИтого прибыль:" + (int)(Experiment.Department.EarnedMoney - Experiment.Department.SalaryPaid);
+                text += "\nИтого прибыль: " + (int)(Experiment.Department.EarnedMoney - Experiment.Department.SalaryPaid);
                 text += "\nКоэффициент занятости: " + Experiment.Department.GetWorkersBusyStatistics().ToString("0.00");
             }
             StatisticsBlock.Text = text;
