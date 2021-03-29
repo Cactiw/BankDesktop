@@ -8,10 +8,12 @@ public class Client
 	public Worker Worker { get; set; }
 	public int Number { get; }
 	public int TimeToSolve { get; set; }
-	public Client(int number, int TimeToSolve)
+	public int Profit { get; set; }
+	public Client(int number, int TimeToSolve, int profit)
 	{
 		Status = Statuses.NEW;
 		this.Number = number;
 		this.TimeToSolve = TimeToSolve;
+		this.Profit = profit;
 	}
 }

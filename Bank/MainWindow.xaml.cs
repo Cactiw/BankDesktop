@@ -71,6 +71,7 @@ namespace Bank
         private void UpdateUI()
         {
             UpdateWorkersTable();
+            UpdateStatistics();
             if (!Experiment.Started)
             {
                 StepButton.Content = "Старт!";
@@ -79,7 +80,14 @@ namespace Bank
                 return;
             }
             StepButton.Content = "Шаг";
-            TimeTextBlock.Text = Settings.DayNames[Experiment.Day] + " " + Experiment.CurrentTime.ToString();
+            if (Experiment.Day >= Settings.DayNames.Count)
+            {
+                TimeTextBlock.Text = "КОНЕЦ";
+            }
+            else
+            {
+                TimeTextBlock.Text = Settings.DayNames[Experiment.Day] + " " + Experiment.CurrentTime.ToString();
+            }
             int QueueCount = Experiment.Department.ClientQueue.Count();
             if (QueueCount <= 0)
             {
@@ -112,6 +120,21 @@ namespace Bank
                 }
             }
             TableBlock.Text = text;
+        }
+
+        private void UpdateStatistics()
+        {
+            String text = "Статистика\n";
+            if (Experiment.Started)
+            {
+                text += "Всего клиентов: " + Experiment.Department.ClientsTotal;
+                text += "\nКлиентов обслужено: " + (Experiment.Department.ClientsTotal - Experiment.Department.ClientsLeft);
+                text += "\nКлиентов ушло: " + Experiment.Department.ClientsLeft;
+                text += "\nПолучено денег: " + Experiment.Department.EarnedMoney;
+                text += "\nВыплачено зарплат: " + (int)Experiment.Department.SalaryPaid;
+                text += "\nИтого прибыль:" + (int)(Experiment.Department.EarnedMoney - Experiment.Department.SalaryPaid);
+            }
+            StatisticsBlock.Text = text;
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)

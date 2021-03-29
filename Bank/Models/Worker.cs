@@ -8,6 +8,8 @@ public class Worker
 	public Client CurrentClient { get; set; }
 	public int Progress { get; set; }
 	public int Number { get; }
+	public int BusyTime { get; set; } = 0;
+	public int FreeTime { get; set; } = 0;
 	public Worker(int number)
 	{
 		Number = number;
@@ -35,8 +37,10 @@ public class Worker
     {
 		if (this.Status == Worker.Statuses.READY)
 		{
+			FreeTime += TickRate;
 			return;
 		}
+		BusyTime += TickRate;
 		this.Progress += TickRate;
 		if (this.Progress >= this.CurrentClient.TimeToSolve)
 		{

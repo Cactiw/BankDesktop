@@ -9,6 +9,7 @@ namespace Bank.Models
     class Experiment
     {
         public bool Started { get; set; } = false;
+        public bool Ended { get; set; } = false;
         private Random Rnd { get; set; }
         private int NextClientSpawn { get; set; }
         public Department Department { get; set; }
@@ -23,7 +24,7 @@ namespace Bank.Models
         public void Start()
         {
             Started = true;
-            Department = new Department(Settings.Instance.WorkersNum, Settings.Instance.QueueLimit);
+            Department = new Department(Settings.Instance.WorkersNum, Settings.Instance.WorkersSalary, Settings.Instance.QueueLimit);
             NextClientSpawn = 1;
             Day = 0;
             CurrentTime = Settings.GetDayStartTime(Day);
@@ -33,12 +34,20 @@ namespace Bank.Models
 
         public void MakeStep()
         {
+            if (Ended)
+            {
+                return;
+            }
             foreach (int i in System.Linq.Enumerable.Range(0, Settings.Instance.StepMinutes))
             {
                 NextClientSpawn -= 1;
                 if (NextClientSpawn <= 0)
                 {
-                    Client NewClient = new Client(ClientNum, Rnd.Next(0, Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin);
+                    Client NewClient = new Client(
+                        ClientNum, 
+                        Rnd.Next(0, Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin, 
+                        Rnd.Next(Settings.Instance.ProfitStart, Settings.Instance.ProfitEnd)
+                    );
                     ClientNum += 1;
                     Trace.WriteLine("Spawned Client with " + NewClient.TimeToSolve.ToString());
                     Department.NewClient(NewClient);
@@ -63,6 +72,7 @@ namespace Bank.Models
             if (Day >= Settings.DayNames.Count)
             {
                 Trace.WriteLine("End of expiriment!");
+                Ended = true;
             }
             else
             {

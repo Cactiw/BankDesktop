@@ -5,13 +5,20 @@ using System.Diagnostics;
 public class Department
 {
 	public int NumWorkers;
+	public int WorkersSalary;
 	public int QueueLimit;
 	public List<Worker> Workers { get; }
 	public List<Client> ClientQueue { get; }
 	public List<int> ClientsWent { get; set; } = new List<int>();
-	public Department(in int NumWorkers, in int queueLimit)
+
+	public int ClientsTotal { get; set; } = 0;
+	public int ClientsLeft { get; set; } = 0;
+	public int EarnedMoney { get; set; } = 0;
+	public float SalaryPaid { get; set; } = 0;
+	public Department(in int NumWorkers, in int workersSalary, in int queueLimit)
 	{
 		this.NumWorkers = NumWorkers;
+		this.WorkersSalary = workersSalary;
 		this.QueueLimit = queueLimit;
 		Workers = new List<Worker>();
 		for (int i = 0; i < NumWorkers; ++i)
@@ -24,6 +31,7 @@ public class Department
 
 	public void NewClient(Client client)
     {
+		ClientsTotal += 1;
 		Worker freeWorker = null;
 		for (int i = 0; i < NumWorkers; ++i)
         {
@@ -46,10 +54,12 @@ public class Department
 			} else
             {
 				client.Status = Client.Statuses.LEFT;
+				ClientsLeft += 1;
 				Trace.WriteLine("Queue is full! Client left.");
             }
         } else
         {
+			EarnedMoney += client.Profit;
 			freeWorker.StartWorkWithClient(client);
         }
 		return;
@@ -87,5 +97,7 @@ public class Department
 			worker.ProceedWork(TickRate);
 			TryMoveQueue(worker);
 		});
+
+		SalaryPaid += WorkersSalary * ((float)TickRate / 60);
     }
 }

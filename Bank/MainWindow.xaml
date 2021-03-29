@@ -29,6 +29,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ListView x:Name="WorkerList" Margin="10" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
                 <ListView.ItemContainerStyle>
@@ -45,15 +46,21 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2">
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2" Margin="10">
                 <TextBlock x:Name="QueueBlock" Text="Очередь пуста" TextAlignment="Center" VerticalAlignment="Center" FontSize="16">
                 </TextBlock>
             </Border>
-            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  Grid.ColumnSpan="2">
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  Grid.ColumnSpan="2" Margin="10">
                 <TextBlock x:Name="TableBlock" Text="Табло" TextAlignment="Center" VerticalAlignment="Center" FontSize="16">
                 </TextBlock>
             </Border>
-            <Button Name="StepButton" Content="Шаг" Grid.Row="5" Grid.Column="5" Width="150" Height="50" Click="StepClick"></Button>
+            
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="4" Grid.RowSpan="5"  Grid.ColumnSpan="2" Margin="10">
+                <TextBlock x:Name="StatisticsBlock" Text="Статистика" TextAlignment="Center" VerticalAlignment="Top" FontSize="16">
+                </TextBlock>
+            </Border>
+            
+            <Button Name="StepButton" Content="Шаг" Grid.Row="5" Grid.Column="3" Width="150" Height="50" Click="StepClick"></Button>
             <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="3" Width="100" Height="30">
                 <TextBlock Name="TimeTextBlock" Text="Пн 10:00" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
             </Border>
