@@ -100,4 +100,21 @@ public class Department
 
 		SalaryPaid += WorkersSalary * ((float)TickRate / 60);
     }
+
+	public float GetWorkersBusyStatistics()
+    {
+		int total = 0;
+		int busy = 0;
+
+		Workers.ForEach(worker =>
+		{
+			total += worker.BusyTime + worker.FreeTime;
+			busy += worker.BusyTime;
+		});
+		if (total == 0)
+        {
+			return 0;
+        }
+		return (float)busy / total;
+	}
 }
