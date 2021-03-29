@@ -38,7 +38,8 @@ namespace Bank.Models
                 NextClientSpawn -= 1;
                 if (NextClientSpawn <= 0)
                 {
-                    Client NewClient = new Client(Rnd.Next(Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin);
+                    Client NewClient = new Client(Rnd.Next(0, Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin);
+                    Trace.WriteLine("Spawned Client with " + NewClient.TimeToSolve.ToString());
                     Department.NewClient(NewClient);
 
                     NextClientSpawn = Rnd.Next(0, 15 - ((Settings.Instance.CustomerFlow - 50) / 10));

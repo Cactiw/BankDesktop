@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 public class Worker
 {
@@ -16,6 +17,7 @@ public class Worker
 
 	public void StartWorkWithClient(Client client)
     {
+		this.Progress = 0;
 		this.Status = Worker.Statuses.BUSY;
 		this.CurrentClient = client;
 		client.Worker = this;
@@ -34,6 +36,8 @@ public class Worker
 			this.CurrentClient.Status = Client.Statuses.DONE;
 			this.CurrentClient = null;
 			this.Status = Worker.Statuses.READY;
+
+			Trace.WriteLine("Work for " + Number.ToString() + " complete!");
 		}
 	}
 	public bool IsBusy()

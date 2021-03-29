@@ -25,7 +25,7 @@ namespace Bank.Models
         public int WorkersSalary { get; set; } = 50;
         public int CustomerFlow { get; set; } = 50;
         public int TimeToProcessBegin { get; set; } = 5;
-        public int TimeToProcessEnd { get; set; } = 15;
+        public int TimeToProcessEnd { get; set; } = 30;
         public int ProfitStart { get; set; } = 10;
         public int ProfitEnd { get; set; } = 100;
         public int StepMinutes { get; set; } = 30;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class Department
 {
@@ -20,12 +21,13 @@ public class Department
 	public void NewClient(Client client)
     {
 		Worker freeWorker = null;
-		for (int i = 0; i <= NumWorkers; ++i)
+		for (int i = 0; i < NumWorkers; ++i)
         {
 			Worker worker = Workers[i];
 			if (worker.Status == Worker.Statuses.READY)
             {
 				freeWorker = worker;
+				Trace.WriteLine("Got worker num " + i.ToString());
 				break;
             }
         }
@@ -33,6 +35,7 @@ public class Department
         {
 			client.Status = Client.Statuses.QUEUE;
 			this.ClientQueue.Add(client);
+			Trace.WriteLine("Put client to queue!");
         } else
         {
 			freeWorker.StartWorkWithClient(client);
