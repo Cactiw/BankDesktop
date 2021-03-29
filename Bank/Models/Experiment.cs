@@ -8,6 +8,7 @@ namespace Bank.Models
 {
     class Experiment
     {
+        public bool Started { get; set; } = false;
         private BackgroundWorker backgroundWorker { get; set; }
         private Random Rnd { get; set; }
         private int NextClientSpawn { get; set; }
@@ -24,7 +25,8 @@ namespace Bank.Models
 
         public void Start()
         {
-            Department = new Department(Settings.Instance.WorkersNum);
+            Started = true;
+            Department = new Department(Settings.Instance.WorkersNum, Settings.Instance.QueueLimit);
             NextClientSpawn = 1;
             Day = 0;
             CurrentTime = Settings.GetDayStartTime(Day);

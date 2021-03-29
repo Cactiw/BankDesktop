@@ -25,6 +25,7 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -60,15 +61,24 @@
             </Binding>
         </TextBox>
 
-        <TextBlock Grid.Row="3">Время обслуживания клиента (от и до)</TextBlock>
-        <TextBox x:Name="TimeToProcessBeginBox" Grid.Row="3" Grid.Column="1"  MinWidth="20">
+        <TextBlock Grid.Row="3">Лимит очереди</TextBlock>
+        <TextBox x:Name="QueueLimitBox" Grid.Row="3" Grid.Column="1"  MinWidth="20">
+            <Binding Path="QueueLimit">
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule></ExceptionValidationRule>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <TextBlock Grid.Row="4">Время обслуживания клиента (от и до)</TextBlock>
+        <TextBox x:Name="TimeToProcessBeginBox" Grid.Row="4" Grid.Column="1"  MinWidth="20">
             <Binding Path="TimeToProcessBegin">
                 <Binding.ValidationRules>
                     <ExceptionValidationRule></ExceptionValidationRule>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <TextBox x:Name="TimeToProcessEndBox" Grid.Row="3" Grid.Column="2"  MinWidth="20">
+        <TextBox x:Name="TimeToProcessEndBox" Grid.Row="4" Grid.Column="2"  MinWidth="20">
             <Binding Path="TimeToProcessEnd">
                 <Binding.ValidationRules>
                     <ExceptionValidationRule></ExceptionValidationRule>
@@ -76,15 +86,15 @@
             </Binding>
         </TextBox>
 
-        <TextBlock Grid.Row="4" MinWidth="250">Прибыль с клиента (от и до)</TextBlock>
-        <TextBox x:Name="ProfitStartBox" Grid.Row="4" Grid.Column="1"  MinWidth="20">
+        <TextBlock Grid.Row="5" MinWidth="250">Прибыль с клиента (от и до)</TextBlock>
+        <TextBox x:Name="ProfitStartBox" Grid.Row="5" Grid.Column="1"  MinWidth="20">
             <Binding Path="ProfitStart">
                 <Binding.ValidationRules>
                     <ExceptionValidationRule></ExceptionValidationRule>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
-        <TextBox x:Name="ProfitEndBox" Grid.Row="4" Grid.Column="2" MinWidth="20">
+        <TextBox x:Name="ProfitEndBox" Grid.Row="5" Grid.Column="2" MinWidth="20">
             <Binding Path="ProfitEnd">
                 <Binding.ValidationRules>
                     <ExceptionValidationRule></ExceptionValidationRule>
@@ -92,8 +102,8 @@
             </Binding>
         </TextBox>
 
-        <TextBlock Grid.Row="5">Шаг моделирования (в минутах)</TextBlock>
-        <TextBox Grid.Row="5" Name="StepMinutesBox" Grid.Column="1" MinWidth="25">
+        <TextBlock Grid.Row="6">Шаг моделирования (в минутах)</TextBlock>
+        <TextBox Grid.Row="6" Name="StepMinutesBox" Grid.Column="1" MinWidth="25">
             <Binding Path="StepMinutes">
                 <Binding.ValidationRules>
                     <ExceptionValidationRule></ExceptionValidationRule>
@@ -101,7 +111,7 @@
             </Binding>
         </TextBox>
 
-        <WrapPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,15,0,0">
+        <WrapPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button IsDefault="True" Command="{x:Static commands:BankCommands.SettingsDialogOkClick}" MinWidth="60" Margin="0,0,10,0" Name="OkButton" Content="ОК">
             </Button>
             <!--<Button IsCancel="True" MinWidth="60" Content="Отмена" Command="{Binding CancelCommand}"></Button>-->

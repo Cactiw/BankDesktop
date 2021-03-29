@@ -52,7 +52,7 @@
                 <TextBlock x:Name="TableBlock" Text="Табло" TextAlignment="Center" VerticalAlignment="Center" FontSize="16">
                 </TextBlock>
             </Border>
-            <Button Content="Шаг" Grid.Row="5" Grid.Column="5" Width="150" Height="50" Click="StepClick"></Button>
+            <Button Name="StepButton" Content="Шаг" Grid.Row="5" Grid.Column="5" Width="150" Height="50" Click="StepClick"></Button>
             <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="3" Width="100" Height="30">
                 <TextBlock Name="TimeTextBlock" Text="Пн 10:00" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
             </Border>

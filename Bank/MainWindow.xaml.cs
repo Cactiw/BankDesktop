@@ -46,7 +46,6 @@ namespace Bank
             InitializeComponent();
             BackgroundWorker backgroundWorker = ((BackgroundWorker)this.FindResource("backgroundWorker"));
             Experiment = new Experiment(backgroundWorker);
-            Experiment.Start();
             WorkerList.ItemsSource = WorkerCells;
             ExitMenuButton.Click += (s, e) => { Application.Current.Shutdown(); };
 
@@ -55,12 +54,24 @@ namespace Bank
 
         private void StepClick(object sender, RoutedEventArgs e)
         {
-            Experiment.MakeStep();
+            if (Experiment.Started)
+            {
+                Experiment.MakeStep();
+            } else
+            {
+                Experiment.Start();
+            }
             UpdateUI();
         }
 
         private void UpdateUI()
         {
+            if (!Experiment.Started)
+            {
+                StepButton.Content = "Старт!";
+                return;
+            }
+            StepButton.Content = "Шаг";
             TimeTextBlock.Text = Settings.DayNames[Experiment.Day] + " " + Experiment.CurrentTime.ToString();
             int QueueCount = Experiment.Department.ClientQueue.Count();
             if (QueueCount <= 0)

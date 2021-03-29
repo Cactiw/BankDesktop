@@ -5,12 +5,14 @@ using System.Diagnostics;
 public class Department
 {
 	public int NumWorkers;
+	public int QueueLimit;
 	public List<Worker> Workers { get; }
 	public List<Client> ClientQueue { get; }
 	public List<int> ClientsWent { get; set; } = new List<int>();
-	public Department(in int NumWorkers)
+	public Department(in int NumWorkers, in int queueLimit)
 	{
 		this.NumWorkers = NumWorkers;
+		this.QueueLimit = queueLimit;
 		Workers = new List<Worker>();
 		for (int i = 0; i < NumWorkers; ++i)
         {
@@ -36,9 +38,16 @@ public class Department
         }
 		if (freeWorker == null)
         {
-			client.Status = Client.Statuses.QUEUE;
-			this.ClientQueue.Add(client);
-			Trace.WriteLine("Put client to queue!");
+			if (ClientQueue.Count < QueueLimit)
+			{
+				client.Status = Client.Statuses.QUEUE;
+				this.ClientQueue.Add(client);
+				Trace.WriteLine("Put client to queue!");
+			} else
+            {
+				client.Status = Client.Statuses.LEFT;
+				Trace.WriteLine("Queue is full! Client left.");
+            }
         } else
         {
 			freeWorker.StartWorkWithClient(client);

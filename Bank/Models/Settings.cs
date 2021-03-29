@@ -24,6 +24,7 @@ namespace Bank.Models
         public int WorkersNum { get; set; } = 4;
         public int WorkersSalary { get; set; } = 50;
         public int CustomerFlow { get; set; } = 50;
+        public int QueueLimit { get; set; } = 15;
         public int TimeToProcessBegin { get; set; } = 5;
         public int TimeToProcessEnd { get; set; } = 30;
         public int ProfitStart { get; set; } = 10;
