@@ -44,11 +44,15 @@ namespace Bank
         public MainWindow()
         {
             InitializeComponent();
-            BackgroundWorker backgroundWorker = ((BackgroundWorker)this.FindResource("backgroundWorker"));
-            Experiment = new Experiment(backgroundWorker);
+            Experiment = new Experiment();
             WorkerList.ItemsSource = WorkerCells;
             ExitMenuButton.Click += (s, e) => { Application.Current.Shutdown(); };
 
+            UpdateUI();
+        }
+        private void ExperimentResetClick(object sender, RoutedEventArgs e)
+        {
+            Experiment = new Experiment();
             UpdateUI();
         }
 
@@ -66,9 +70,12 @@ namespace Bank
 
         private void UpdateUI()
         {
+            UpdateWorkersTable();
             if (!Experiment.Started)
             {
                 StepButton.Content = "Старт!";
+                QueueBlock.Text = "Очередь пуста";
+                WorkerCells.Clear();
                 return;
             }
             StepButton.Content = "Шаг";
@@ -88,17 +95,20 @@ namespace Bank
             {
                 WorkerCells.Add(workerCell);
             }
-            UpdateWorkersTable();
         }
 
         private void UpdateWorkersTable()
         {
             String text = "Клиент -> Окно\n";
-            foreach (int i in System.Linq.Enumerable.Range(0, Experiment.Department.NumWorkers)) {
-                int number = Experiment.Department.ClientsWent[i];
-                if (number != -1)
+            if (Experiment.Started)
+            {
+                foreach (int i in System.Linq.Enumerable.Range(0, Experiment.Department.NumWorkers))
                 {
-                    text += number.ToString() + " -> " + i.ToString() + "\n";
+                    int number = Experiment.Department.ClientsWent[i];
+                    if (number != -1)
+                    {
+                        text += number.ToString() + " -> " + i.ToString() + "\n";
+                    }
                 }
             }
             TableBlock.Text = text;

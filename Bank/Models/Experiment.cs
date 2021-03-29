@@ -9,17 +9,14 @@ namespace Bank.Models
     class Experiment
     {
         public bool Started { get; set; } = false;
-        private BackgroundWorker backgroundWorker { get; set; }
         private Random Rnd { get; set; }
         private int NextClientSpawn { get; set; }
         public Department Department { get; set; }
         public int Day { get; set; }
         public TimeSpan CurrentTime { get; set; }
         public int ClientNum { get; set; } = 1;
-        public Experiment(in BackgroundWorker backgroundWorker)
+        public Experiment()
         {
-            this.backgroundWorker = backgroundWorker;
-            //this.SetBackgroundWorker();
             Rnd = new Random();
         }
 
@@ -73,36 +70,5 @@ namespace Bank.Models
                 Department.ClearState();
             }
         }
-
-    //    private void SetBackgroundWorker()
-    //    {
-    //        backgroundWorker.DoWork += backgroundWorker_DoWork;
-    //        backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
-    //        backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
-    //    }
-
-    //    public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-    //    {
-    //        Department department = (Department)e.Result;
-    //        Trace.WriteLine("In work");
-    //        var rnd = new Random();
-    //        while (true)
-    //        {
-    //            if (rnd.Next(100) <= Settings.Instance.CustomerFlow)
-    //            {
-    //                department.NewClient(new Client(rnd.Next(Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin));
-    //            }
-    //        }
-    //    }
-
-    //    public void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-    //    {
-
-    //    }
-
-    //    private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-    //    {
-    //        //update ui once worker complete his work
-    //    }
     }
 }
