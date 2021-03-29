@@ -77,6 +77,20 @@ namespace Bank
             {
                 WorkerCells.Add(workerCell);
             }
+            UpdateWorkersTable();
+        }
+
+        private void UpdateWorkersTable()
+        {
+            String text = "Клиент -> Окно\n";
+            foreach (int i in System.Linq.Enumerable.Range(0, Experiment.Department.NumWorkers)) {
+                int number = Experiment.Department.ClientsWent[i];
+                if (number != -1)
+                {
+                    text += number.ToString() + " -> " + i.ToString() + "\n";
+                }
+            }
+            TableBlock.Text = text;
         }
 
         private void SettingsClick(object sender, RoutedEventArgs e)

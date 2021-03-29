@@ -4,9 +4,10 @@ using System.Diagnostics;
 
 public class Department
 {
-	private int NumWorkers;
+	public int NumWorkers;
 	public List<Worker> Workers { get; }
 	public List<Client> ClientQueue { get; }
+	public List<int> ClientsWent { get; set; } = new List<int>();
 	public Department(in int NumWorkers)
 	{
 		this.NumWorkers = NumWorkers;
@@ -14,6 +15,7 @@ public class Department
 		for (int i = 0; i < NumWorkers; ++i)
         {
 			Workers.Add(new Worker(i + 1));
+			ClientsWent.Add(-1);
         }
 		ClientQueue = new List<Client>();
 	}
@@ -28,6 +30,7 @@ public class Department
             {
 				freeWorker = worker;
 				Trace.WriteLine("Got worker num " + i.ToString());
+				ClientsWent[i] = client.Number;
 				break;
             }
         }

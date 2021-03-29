@@ -14,10 +14,11 @@ namespace Bank.Models
         public Department Department { get; set; }
         public int Day { get; set; }
         public TimeSpan CurrentTime { get; set; }
+        public int ClientNum { get; set; } = 1;
         public Experiment(in BackgroundWorker backgroundWorker)
         {
             this.backgroundWorker = backgroundWorker;
-            this.SetBackgroundWorker();
+            //this.SetBackgroundWorker();
             Rnd = new Random();
         }
 
@@ -38,7 +39,8 @@ namespace Bank.Models
                 NextClientSpawn -= 1;
                 if (NextClientSpawn <= 0)
                 {
-                    Client NewClient = new Client(Rnd.Next(0, Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin);
+                    Client NewClient = new Client(ClientNum, Rnd.Next(0, Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin);
+                    ClientNum += 1;
                     Trace.WriteLine("Spawned Client with " + NewClient.TimeToSolve.ToString());
                     Department.NewClient(NewClient);
 
@@ -70,35 +72,35 @@ namespace Bank.Models
             }
         }
 
-        private void SetBackgroundWorker()
-        {
-            backgroundWorker.DoWork += backgroundWorker_DoWork;
-            backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
-            backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
-        }
+    //    private void SetBackgroundWorker()
+    //    {
+    //        backgroundWorker.DoWork += backgroundWorker_DoWork;
+    //        backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
+    //        backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
+    //    }
 
-        public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Department department = (Department)e.Result;
-            Trace.WriteLine("In work");
-            var rnd = new Random();
-            while (true)
-            {
-                if (rnd.Next(100) <= Settings.Instance.CustomerFlow)
-                {
-                    department.NewClient(new Client(rnd.Next(Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin));
-                }
-            }
-        }
+    //    public void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+    //    {
+    //        Department department = (Department)e.Result;
+    //        Trace.WriteLine("In work");
+    //        var rnd = new Random();
+    //        while (true)
+    //        {
+    //            if (rnd.Next(100) <= Settings.Instance.CustomerFlow)
+    //            {
+    //                department.NewClient(new Client(rnd.Next(Settings.Instance.TimeToProcessEnd - Settings.Instance.TimeToProcessBegin) + Settings.Instance.TimeToProcessBegin));
+    //            }
+    //        }
+    //    }
 
-        public void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
+    //    public void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+    //    {
 
-        }
+    //    }
 
-        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //update ui once worker complete his work
-        }
+    //    private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+    //    {
+    //        //update ui once worker complete his work
+    //    }
     }
 }

@@ -44,8 +44,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Grid.Column="2">
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="3" Grid.Column="2">
                 <TextBlock x:Name="QueueBlock" Text="Очередь пуста" TextAlignment="Center" VerticalAlignment="Center" FontSize="16">
+                </TextBlock>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2"  Grid.ColumnSpan="2">
+                <TextBlock x:Name="TableBlock" Text="Табло" TextAlignment="Center" VerticalAlignment="Center" FontSize="16">
                 </TextBlock>
             </Border>
             <Button Content="Шаг" Grid.Row="5" Grid.Column="5" Width="150" Height="50" Click="StepClick"></Button>
