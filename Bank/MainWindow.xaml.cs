@@ -86,7 +86,7 @@ namespace Bank
             }
             else
             {
-                TimeTextBlock.Text = Settings.DayNames[Experiment.Day] + " " + Experiment.CurrentTime.ToString();
+                TimeTextBlock.Text = Settings.DayNames[Experiment.Day] + " " + Experiment.CurrentTime.ToString(@"hh\:mm");
             }
             int QueueCount = Experiment.Department.ClientQueue.Count();
             if (QueueCount <= 0)
