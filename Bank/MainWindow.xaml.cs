@@ -42,6 +42,14 @@ namespace Bank
             UpdateUI();
         }
 
+        private void EndClick(object sender, RoutedEventArgs e)
+        {
+            while (!Experiment.Ended)
+            {
+                StepClick(sender, e);
+            }
+        }
+
         private void StepClick(object sender, RoutedEventArgs e)
         {
             if (Experiment.Started)

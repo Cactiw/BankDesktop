@@ -87,7 +87,8 @@
             </Grid>
 
             <StackPanel Grid.Row="5" Grid.Column="3" >
-                <Button Name="StepButton" Content="Шаг" Width="150" Height="50" Click="StepClick" VerticalAlignment="Center" Margin="10"></Button>
+                <Button Name="StepButton" Content="Шаг" Width="150" Height="35" Click="StepClick" VerticalAlignment="Center" Margin="10"></Button>
+                <Button Name="EndButton" Content="В конец" Width="150" Height="35" Click="EndClick" VerticalAlignment="Center" Margin="10"></Button>
                 
             </StackPanel>
         </Grid>
