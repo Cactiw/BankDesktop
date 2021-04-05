@@ -111,13 +111,22 @@ namespace Bank
             String text = "Клиент -> Окно\n";
             if (Experiment.Started)
             {
+                List<List<int>> lastClients = new List<List<int>>();
                 foreach (int i in System.Linq.Enumerable.Range(0, Experiment.Department.NumWorkers))
                 {
                     int number = Experiment.Department.ClientsWent[i];
                     if (number != -1)
                     {
-                        text += number.ToString() + " -> " + (i + 1).ToString() + "\n";
+                        var tulp = new List<int>();
+                        tulp.Add(number);
+                        tulp.Add(i);
+                        lastClients.Add(tulp);
                     }
+                }
+                var sortedClients = lastClients.OrderBy(tulp => -tulp[0]);
+                foreach(List<int> tulp in sortedClients)
+                {
+                    text += tulp[0].ToString() + " -> " + (tulp[1] + 1).ToString() + "\n";
                 }
             }
             TableBlock.Text = text;
