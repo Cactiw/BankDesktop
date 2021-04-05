@@ -1,4 +1,5 @@
 ﻿using Bank.Models;
+using Bank.Models.Cells;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,23 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Bank
-
 {
-    public class WorkerCell
-    {
-        public int Number { get; }
-        public String NumberString { get; }
-        public bool IsBusy { get; }
-        public SolidColorBrush BackgroundColor { get; }
-
-        public WorkerCell(int number, bool isBusy)
-        {
-            Number = number;
-            NumberString = "Работник " + Number.ToString();
-            IsBusy = isBusy;
-            BackgroundColor = isBusy ? new SolidColorBrush(Color.FromArgb(150, 245, 66, 66)) : new SolidColorBrush(Color.FromArgb(100, 66, 245, 182));
-        }
-    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
