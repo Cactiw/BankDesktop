@@ -69,6 +69,7 @@ namespace Bank.Models
         private void NextDay()
         {
             Day += 1;
+            ClientNum = 1;
             if (Day >= Settings.DayNames.Count)
             {
                 Trace.WriteLine("End of expiriment!");

@@ -43,7 +43,7 @@
             </Binding>
         </TextBox>
 
-        <TextBlock Grid.Row="1">Зарплата клерков:</TextBlock>
+        <TextBlock Grid.Row="1">Зарплата клерков в час:</TextBlock>
         <TextBox Grid.Row="1" Name="WorkersSalaryBox" Grid.Column="1" MinWidth="25">
             <Binding Path="WorkersSalary">
                 <Binding.ValidationRules>
@@ -52,7 +52,7 @@
             </Binding>
         </TextBox>
 
-        <TextBlock Grid.Row="2">Поток клиентов</TextBlock>
+        <TextBlock Grid.Row="2">Интенсивность потока клиентов</TextBlock>
         <TextBox x:Name="CustomerFlowBox" Grid.Row="2" Grid.Column="1"  MinWidth="20">
             <Binding Path="CustomerFlow">
                 <Binding.ValidationRules>
@@ -70,7 +70,7 @@
             </Binding>
         </TextBox>
 
-        <TextBlock Grid.Row="4">Время обслуживания клиента (от и до)</TextBlock>
+        <TextBlock Grid.Row="4">Время обслуживания клиента (в минутах, от и до)</TextBlock>
         <TextBox x:Name="TimeToProcessBeginBox" Grid.Row="4" Grid.Column="1"  MinWidth="20">
             <Binding Path="TimeToProcessBegin">
                 <Binding.ValidationRules>

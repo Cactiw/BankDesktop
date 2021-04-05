@@ -47,6 +47,7 @@ namespace Bank
             Experiment = new Experiment();
             WorkerList.ItemsSource = WorkerCells;
             ExitMenuButton.Click += (s, e) => { Application.Current.Shutdown(); };
+            ExitButton.Click += (s, e) => { Application.Current.Shutdown(); };
 
             UpdateUI();
         }
@@ -115,7 +116,7 @@ namespace Bank
                     int number = Experiment.Department.ClientsWent[i];
                     if (number != -1)
                     {
-                        text += number.ToString() + " -> " + i.ToString() + "\n";
+                        text += number.ToString() + " -> " + (i + 1).ToString() + "\n";
                     }
                 }
             }

@@ -10,13 +10,6 @@ namespace Bank
 {
     public partial class SettingsWindow : Window
     {
-        //private TextBox WorkersBox { get; set; }
-        //private TextBox WorkersSalaryBox { get; set; }
-        //private TextBox TimeToProcessBeginBox { get; set; }
-        //private TextBox TimeToProcessEndBox { get; set; }
-        //private TextBox ProfitStartBox { get; set; }
-        //private TextBox ProfitEndBox { get; set; }
-        //private TextBox StepMinutesBox { get; set; }
         private Settings SettingsInstance { get; }
         public SettingsWindow()
         {
@@ -28,6 +21,7 @@ namespace Bank
         public void OkClick(object sender, RoutedEventArgs e) {
             Trace.WriteLine("OK");
             Trace.WriteLine(this.WorkersBox.Text);
+            Settings.Instance.ValidateData();
             this.DialogResult = true;
         }
 

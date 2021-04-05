@@ -79,8 +79,9 @@ public class Department
 		Client client = ClientQueue[0];
 		ClientQueue.RemoveAt(0);
 		worker.StartWorkWithClient(client);
+		ClientsWent[worker.Number - 1] = client.Number;
 
-    }
+	}
 
 	public void ClearState()
     {
